@@ -23,6 +23,18 @@ namespace TimeBuddy.Controllers
             return View(model);
         }
 
+        public ActionResult IsFridayTomorrow(int? timeZoneOffset = null)
+        {
+            if (!timeZoneOffset.HasValue)
+            {
+                timeZoneOffset = -1 * (int)(DateTime.UtcNow - DateTime.Now).TotalMinutes;
+            }
+
+            ViewBag.IsFridayTomorrow = DateTime.UtcNow.AddMinutes(timeZoneOffset.Value).AddDays(1).DayOfWeek == DayOfWeek.Friday;
+
+            return View("Friday");
+        }
+
         public JsonResult GetCurrentDateTime()
         {
             return Json(DateTime.Now,JsonRequestBehavior.AllowGet);

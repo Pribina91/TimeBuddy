@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div style="line-height: 100vh; height: 100vh">
+    @if (ViewBag.IsFridayTomorrow)
+    {
+        <div style="text-align: center;font-size: xx-large; font-weight: bold;">Áno</div>
+    }
+    else
+    {
+        <div style="text-align: center;font-size: xx-large; font-weight: bold;">Nie</div>
+    }
+</div>

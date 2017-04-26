@@ -16,15 +16,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class = "navbar-brand" onclick="location.href = getLink('sk-SK')">TimeBuddy</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a onclick="location.href = getLink('sk-SK')">Home</a></li>
-                    <li><a onclick="location.href = getLink('sk-SK', 120)">Bratislava</a></li>
-                    <li><a onclick="location.href = getLink('en-GB', 60)">London</a></li>
-                    <li><a onclick="location.href = getLink('en-US', -600)" >Tahiti</a></li>
-                    <li><a onclick="location.href = getLink('en-NZ', 720)" >Auckland</a></li>
+                    <li><a onclick="location.href = getLinkBase('sk-SK')">Home</a></li>
+                    <li class="">@Html.ActionLink("Je zajtra piatok?", "IsFridayTomorrow", "Home")</li>
+                   
+
+                    @*    <li class=""><a onclick="location.href = getLink2Base()">Je zajtra piatok?</a> </li>*@
+                    
+                    
+    @*
+
+        <li><a onclick="location.href = getLink('sk-SK', 120)">Bratislava</a></li>
+    <li class=""><a onclick="location.href = getLink2(120)">Je zajtra piatok v Bratislave</a> </li>
+    <li><a onclick="location.href = getLink('en-US', -600)" >Tahiti</a></li>
+    <li class=""><a onclick="location.href = getLink2(-600)">Je zajtra piatok na Tahiti</a> </li>
+    <li><a onclick="location.href = getLink('en-NZ', 720)" >Auckland</a></li>
+    <li class=""><a onclick="location.href = getLink2(720)">Je zajtra piatok v Aucklande</a> </li>
+                    *@
+
                 </ul>
             </div>
         </div>
@@ -42,14 +53,24 @@
     @RenderSection("scripts", required: false)
     
 <script>
-    function getLink(culture) {
+    function getLinkBase(culture) {
         var offset = -1 * new Date().getTimezoneOffset();
         return getLink(culture, offset);
 
     }
 
-    function getLink(culture,offset) {
+    function getLink(culture, offset) {
         return "/?timeZoneOffset=" + offset + "&culture=" + culture ;
+    }
+
+    function getLink2Base() {
+        var offset = -1 * new Date().getTimezoneOffset();
+        return getLink2(offset);
+    }
+
+    function getLink2(offset) {
+       
+        return "/Home/IsFridayTomorrow/?timeZoneOffset=" + offset ;
     }
 
 </script>
